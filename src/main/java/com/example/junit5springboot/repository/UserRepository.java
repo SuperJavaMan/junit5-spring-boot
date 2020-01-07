@@ -8,11 +8,12 @@ import java.util.List;
 
 /**
  * @author Oleg Pavlyukov
- * on 30.12.2019
+ * on 04.01.2020
  * cpabox777@gmail.com
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByName(String name);
-    boolean deleteUserById(Long id);
+//    User findTopByAge();
+    boolean existsByName(String name);
 }

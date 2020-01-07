@@ -37,7 +37,10 @@ public class UserController {
 
     @PostMapping
     public User addUser(@RequestBody User user) {
-        return repository.save(user);
+        User addUser = new User();
+        addUser.setName(user.getName());
+        addUser.setAge(user.getAge());
+        return repository.save(addUser);
     }
 
     @PutMapping("/{id}")
@@ -51,10 +54,12 @@ public class UserController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        if (repository.deleteUserById(id)) {
+        try {
+            repository.deleteById(id);
             return ResponseEntity.ok().body("User deleted successfully!");
-        } else {
-            return ResponseEntity.badRequest().body("User deletion error!");
+        } catch (Exception ex){
+            ex.printStackTrace();
+            return ResponseEntity.badRequest().body("User deletion error! -> " + ex.getMessage());
         }
     }
 }
