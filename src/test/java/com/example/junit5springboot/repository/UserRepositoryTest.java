@@ -34,6 +34,7 @@ class UserRepositoryTest {
     @BeforeEach
     void setUp() {
         userList = UserProviderUtil.generateUserList(5);
+        repository.saveAll(userList);
     }
 
     @AfterEach
@@ -44,14 +45,9 @@ class UserRepositoryTest {
     @Test
     void findAllByName_retrieve_entity_from_db_ok() {
         User user = userList.get(0);
-        System.out.println(user.getName());
+        List<User> userListDb = repository.findAllByName(user.getName());
         assertNotNull(repository);
-        assertNotNull(repository.findAllByName(user.getName()));
-        assertEquals(repository.findAllByName(user.getName()).get(0).getName(), user.getName());
-    }
-
-    @Test
-    void find_top_by_age_ok() {
-
+        assertNotNull(userListDb);
+        assertEquals(userListDb.get(0).getName(), user.getName());
     }
 }
