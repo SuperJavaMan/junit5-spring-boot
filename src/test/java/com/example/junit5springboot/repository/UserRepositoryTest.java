@@ -24,8 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * cpabox777@gmail.com
  */
 @SpringBootTest
-//@ExtendWith(SpringExtension.class)
-//@DataJpaTest
 class UserRepositoryTest {
 
     @Autowired
