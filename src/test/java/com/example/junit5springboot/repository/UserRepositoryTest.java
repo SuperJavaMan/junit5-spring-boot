@@ -46,6 +46,7 @@ class UserRepositoryTest {
     void findAllByName_retrieve_entity_from_db_ok() {
         User user = userList.get(0);
         List<User> userListDb = repository.findAllByName(user.getName());
+
         assertNotNull(repository);
         assertNotNull(userListDb);
         assertEquals(userListDb.get(0).getName(), user.getName());

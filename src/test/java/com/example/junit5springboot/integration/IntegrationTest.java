@@ -62,6 +62,7 @@ class IntegrationTest {
         Long userId = user.getId();
         ResponseEntity<User> response = restTemplate.getForEntity(getUri(String.valueOf(userId)), User.class);
         User responseUser = response.getBody();
+
         assertNotNull(response);
         assertNotNull(responseUser);
         assertNotNull(responseUser.getName());
@@ -73,8 +74,10 @@ class IntegrationTest {
         User user = new User();
         user.setName("Test User");
         user.setAge(20);
+
         ResponseEntity<User> responseEntity = restTemplate.postForEntity(getUri(), user, User.class);
         User responseUser = responseEntity.getBody();
+
         assertNotNull(responseEntity);
         assertNotNull(responseUser);
         assertNotNull(responseUser.getName());
@@ -87,9 +90,12 @@ class IntegrationTest {
         User requestUser = new User();
         requestUser.setName("MegaOleg");
         requestUser.setAge(30);
+
         HttpEntity<User> entity = new HttpEntity<>(requestUser);
-        ResponseEntity<User> responseEntity = restTemplate.exchange(getUri(String.valueOf(user.getId())), HttpMethod.PUT, entity, User.class);
+        ResponseEntity<User> responseEntity = restTemplate.exchange(getUri(String.valueOf(user.getId())),
+                                                                    HttpMethod.PUT, entity, User.class);
         User responseUser = responseEntity.getBody();
+
         assertNotNull(responseEntity);
         assertNotNull(responseUser);
         assertNotNull(responseUser.getName());
@@ -102,6 +108,7 @@ class IntegrationTest {
         Long id = user.getId();
         restTemplate.delete(getUri(String.valueOf(user.getId())));
         boolean isExist = repository.findById(id).isPresent();
+
         assertFalse(isExist);
     }
 
