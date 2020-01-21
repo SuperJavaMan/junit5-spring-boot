@@ -25,11 +25,9 @@ import static org.mockito.Mockito.when;
  * cpabox777@gmail.com
  */
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
 class UserControllerTest {
 
     @InjectMocks
-    @Autowired
     UserController controller;
 
     @Mock
